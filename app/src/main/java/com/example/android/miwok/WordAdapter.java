@@ -31,6 +31,8 @@ class WordAdapter extends ArrayAdapter<Word> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItemView = convertView;
+
+        //Check if the current view is being reused,otherwise inflate the view
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
@@ -53,6 +55,7 @@ class WordAdapter extends ArrayAdapter<Word> {
         // set this text on the miwokTransaltion TextView
         miwokTextView.setText(currentWord.getmMiwokTranslation());
 
+        //return the entire listItemView which contains 2 TextViews
         return listItemView;
     }
 }
