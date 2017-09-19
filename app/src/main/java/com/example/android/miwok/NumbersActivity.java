@@ -31,13 +31,13 @@ public class NumbersActivity extends AppCompatActivity {
         wordsList.add("Ten");
 
         //Find the rootView to add child views to it
-        LinearLayout rootView = (LinearLayout)findViewById(R.id.root_view);
+        LinearLayout rootView = (LinearLayout) findViewById(R.id.root_view);
 
-        //Setting the counter variable for looping
-        int index = 0;
 
+        //in for Loop the counter variable is initialized and
+        // incremented inside the for loop body itself
         //While Loop Keeps looping until the we reach the end of the list
-        while (index < wordsList.size()){
+        for (int index = 0; index < wordsList.size(); index++) {
 
             //Create a new textView
             TextView wordView = new TextView(this);
@@ -47,9 +47,6 @@ public class NumbersActivity extends AppCompatActivity {
 
             //Add the textView to the rootView
             rootView.addView(wordView);
-
-            //increment the index by 1 to continue the looping
-            index++;
         }
 
     }
