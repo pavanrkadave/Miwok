@@ -12,35 +12,40 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
-    int i = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        //ArrayList to store the Numbers
-        ArrayList<String> wordsList = new ArrayList<>();
-        wordsList.add("One");
-        wordsList.add("Two");
-        wordsList.add("Three");
-        wordsList.add("Four");
-        wordsList.add("Five");
-        wordsList.add("Six");
-        wordsList.add("Seven");
-        wordsList.add("Eight");
-        wordsList.add("Nine");
-        wordsList.add("Ten");
+        /**
+         * ArrayList to store the Numbers in the word class which is custom created by us.
+         * It holds both the english translation and the miwok translation
+         */
+        ArrayList<Word> words = new ArrayList<Word>();
 
-        //Using the ArrayAdapter to recycle the views
-        //This method makes efficient use of memory
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,wordsList);
+        //Adding the words to the words arrayList
+        words.add(new Word("One", "Lutti"));
+        words.add(new Word("Two", "Otiiko"));
+        words.add(new Word("Three", "Tolookosu"));
+        words.add(new Word("Four", "Oyyisa"));
+        words.add(new Word("Five", "Massokka"));
+        words.add(new Word("Six", "Temmokka"));
+        words.add(new Word("Seven", "Kenekaku"));
+        words.add(new Word("Eight", "Kawinta"));
+        words.add(new Word("Nine", "Wo’e"));
+        words.add(new Word("Ten", "Na’aacha"));
 
-        //Identifying the ListView to put the words in the list
-        ListView listView = (ListView)findViewById(R.id.list);
+        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
+        // adapter knows how to create list items for each item in the list.
+        WordAdapter adapter = new WordAdapter(this, words);
+
+        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
+        // There should be a {@link ListView} with the view ID called list, which is declared in the
+        // activity_numbers.xml layout file.
+        ListView listView = (ListView) findViewById(R.id.list);
 
         //Setting the itemsAdapter to the listView
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(adapter);
 
     }
 }
