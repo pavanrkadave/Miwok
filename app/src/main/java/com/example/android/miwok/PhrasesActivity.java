@@ -24,16 +24,16 @@ public class PhrasesActivity extends AppCompatActivity {
         ArrayList<Word> words = new ArrayList<Word>();
 
         //Adding the words to the words arrayList
-        words.add(new Word("One", "Lutti"));
-        words.add(new Word("Two", "Otiiko"));
-        words.add(new Word("Three", "Tolookosu"));
-        words.add(new Word("Four", "Oyyisa"));
-        words.add(new Word("Five", "Massokka"));
-        words.add(new Word("Six", "Temmokka"));
-        words.add(new Word("Seven", "Kenekaku"));
-        words.add(new Word("Eight", "Kawinta"));
-        words.add(new Word("Nine", "Wo’e"));
-        words.add(new Word("Ten", "Na’aacha"));
+        words.add(new Word("Where are you going?", "minto wuksus"));
+        words.add(new Word("What is your name?", "tinnә oyaase'nә"));
+        words.add(new Word("My name is...", "oyaaset..."));
+        words.add(new Word("How are you feeling?", "michәksәs?"));
+        words.add(new Word("I’m feeling good.", "kuchi achit"));
+        words.add(new Word("Are you coming?", "әәnәs'aa?"));
+        words.add(new Word("Yes, I’m coming.", "hәә’ әәnәm"));
+        words.add(new Word("I’m coming.", "әәnәm"));
+        words.add(new Word("Let’s go.", "yoowutis"));
+        words.add(new Word("Come here.", "әnni'nem"));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
