@@ -36,7 +36,6 @@ public class NumbersActivity extends AppCompatActivity {
 
         //in for Loop the counter variable is initialized and
         // incremented inside the for loop body itself
-        //While Loop Keeps looping until the we reach the end of the list
         for (int index = 0; index < wordsList.size(); index++) {
 
             //Create a new textView
