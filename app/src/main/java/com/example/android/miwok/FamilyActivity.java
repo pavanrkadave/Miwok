@@ -24,16 +24,16 @@ public class FamilyActivity extends AppCompatActivity {
         ArrayList<Word> words = new ArrayList<Word>();
 
         //Adding the words to the words arrayList
-        words.add(new Word("One", "Lutti"));
-        words.add(new Word("Two", "Otiiko"));
-        words.add(new Word("Three", "Tolookosu"));
-        words.add(new Word("Four", "Oyyisa"));
-        words.add(new Word("Five", "Massokka"));
-        words.add(new Word("Six", "Temmokka"));
-        words.add(new Word("Seven", "Kenekaku"));
-        words.add(new Word("Eight", "Kawinta"));
-        words.add(new Word("Nine", "Wo’e"));
-        words.add(new Word("Ten", "Na’aacha"));
+        words.add(new Word("father", "әpә"));
+        words.add(new Word("mother", "әṭa"));
+        words.add(new Word("son", "angsi"));
+        words.add(new Word("daughter", "tune"));
+        words.add(new Word("older brother", "taachi"));
+        words.add(new Word("younger brother", "chalitti"));
+        words.add(new Word("older sister", "teṭe"));
+        words.add(new Word("younger sister", "kolliti"));
+        words.add(new Word("grandmother", "ama"));
+        words.add(new Word("grandfather", "paapa"));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
