@@ -20,18 +20,18 @@ public class ColorsActivity extends AppCompatActivity {
         ArrayList<Word> words = new ArrayList<Word>();
 
         //Adding the words to the words arrayList
-        words.add(new Word("Red", "Weṭeṭṭi",R.drawable.color_red));
-        words.add(new Word("Green", "Chokokki",R.drawable.color_green));
-        words.add(new Word("Brown", "Takaakki",R.drawable.color_brown));
-        words.add(new Word("Gray", "Topoppi",R.drawable.color_gray));
-        words.add(new Word("Black", "Kululli",R.drawable.color_black));
-        words.add(new Word("White", "Kelelli",R.drawable.color_white));
-        words.add(new Word("Dusty Yellow", "Topiisә",R.drawable.color_dusty_yellow));
-        words.add(new Word("Mustard Yellow", "Chiwiiṭә",R.drawable.color_mustard_yellow));
+        words.add(new Word("Red", "Weṭeṭṭi", R.drawable.color_red));
+        words.add(new Word("Green", "Chokokki", R.drawable.color_green));
+        words.add(new Word("Brown", "Takaakki", R.drawable.color_brown));
+        words.add(new Word("Gray", "Topoppi", R.drawable.color_gray));
+        words.add(new Word("Black", "Kululli", R.drawable.color_black));
+        words.add(new Word("White", "Kelelli", R.drawable.color_white));
+        words.add(new Word("Dusty Yellow", "Topiisә", R.drawable.color_dusty_yellow));
+        words.add(new Word("Mustard Yellow", "Chiwiiṭә", R.drawable.color_mustard_yellow));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words,R.color.category_colors);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the

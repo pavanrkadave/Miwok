@@ -79,7 +79,7 @@ public class Word {
     /**
      * Returns whether or not there is an image for this word.
      */
-    public boolean hasImage(){
+    public boolean hasImage() {
         return mImageResId != NO_IMAGE_PROVODED;
     }
 }
