@@ -20,6 +20,20 @@ public class Word {
 
     /**
      * Create a new word object
+     * This constructor doesn't take imageResId (this is for the pharsesActivity).
+     *
+     * @param defaultTranslation is the word in a language that a user is already familier with (like English).
+     * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
+     */
+    Word(String defaultTranslation, String miwokTranslation) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+    }
+
+
+    /**
+     * Create a new word object
+     * This is for all other activity which takes imageResId for displaying image in their activity.
      *
      * @param defaultTranslation is the word in a language that a user is already familier with (like English).
      * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
