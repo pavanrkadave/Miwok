@@ -22,6 +22,9 @@ public class Word {
     //variable to check if the activity has an image or not
     private static final int NO_IMAGE_PROVODED = -1;
 
+    //song resourceId for individual listItem
+    private int mSongResId;
+
 
     /**
      * Create a new word object
@@ -30,9 +33,10 @@ public class Word {
      * @param defaultTranslation is the word in a language that a user is already familier with (like English).
      * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
      */
-    Word(String defaultTranslation, String miwokTranslation) {
+    Word(String defaultTranslation, String miwokTranslation,int songResId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mSongResId = songResId;
     }
 
 
@@ -43,10 +47,11 @@ public class Word {
      * @param defaultTranslation is the word in a language that a user is already familier with (like English).
      * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
      */
-    Word(String defaultTranslation, String miwokTranslation, int imageResId) {
+    Word(String defaultTranslation, String miwokTranslation, int imageResId,int songResId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResId = imageResId;
+        mSongResId = songResId;
     }
 
     /**
@@ -81,5 +86,14 @@ public class Word {
      */
     public boolean hasImage() {
         return mImageResId != NO_IMAGE_PROVODED;
+    }
+
+
+    /**
+     *
+     * @returns the song resource id.
+     */
+    public int getmSongResId() {
+        return mSongResId;
     }
 }
