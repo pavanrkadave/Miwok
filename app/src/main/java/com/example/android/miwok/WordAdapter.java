@@ -60,8 +60,14 @@ class WordAdapter extends ArrayAdapter<Word> {
         //get the imageview from the listItemView
         //set the proper image to the imageView
         ImageView resImage = (ImageView) listItemView.findViewById(R.id.word_image);
-        resImage.setImageResource(currentWord.getmImageResId());
 
+        //If there is an image for the imageView set the image
+        //Or else hide the imageView
+        if (currentWord.hasImage()) {
+            resImage.setImageResource(currentWord.getmImageResId());
+        } else {
+            resImage.setVisibility(View.GONE);
+        }
         //return the entire listItemView which contains 2 TextViews
         return listItemView;
     }

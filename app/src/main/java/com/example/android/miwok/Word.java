@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.util.Log;
+
 /**
  * Created by pavan on 9/19/2017.
  * {@link Word} represents a vocabulary of word that a user wants to learn.
@@ -15,7 +17,10 @@ public class Word {
     private String mMiwokTranslation;
 
     //ImageRes Id to get the image resource
-    private int mImageResId;
+    private int mImageResId = NO_IMAGE_PROVODED;
+
+    //variable to check if the activity has an image or not
+    private static final int NO_IMAGE_PROVODED = -1;
 
 
     /**
@@ -69,5 +74,12 @@ public class Word {
      */
     public int getmImageResId() {
         return mImageResId;
+    }
+
+    /**
+     * Returns whether or not there is an image for this word.
+     */
+    public boolean hasImage(){
+        return mImageResId != NO_IMAGE_PROVODED;
     }
 }
