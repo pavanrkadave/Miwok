@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2016 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.android.miwok;
 
 import android.content.Context;
@@ -7,37 +22,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 /**
- * Created by pavan on 9/19/2017.
+ * {@link WordAdapter} is an {@link ArrayAdapter} that can provide the layout for each list item
+ * based on a data source, which is a list of {@link Word} objects.
  */
+public class WordAdapter extends ArrayAdapter<Word>  {
 
-class WordAdapter extends ArrayAdapter<Word> {
-
-    private static int mLayoutColorResId;
+    /** Resource ID for the background color for this list of words */
+    private int mColorResourceId;
 
     /**
-     * This is our own custom constructor (it doesn't mirror a superclass constructor).
-     * The context is used to inflate the layout file, and the list is the data we want
-     * to populate into the lists.
+     * Create a new {@link WordAdapter} object.
      *
-     * @param context The current context. Used to inflate the layout file.
-     * @param words   A List of AndroidFlavor objects to display in a list
+     * @param context is the current context (i.e. Activity) that the adapter is being created in.
+     * @param words is the list of {@link Word}s to be displayed.
+     * @param colorResourceId is the resource ID for the background color for this list of words
      */
-    public WordAdapter(Context context, ArrayList<Word> words, int layoutColorRes) {
+    public WordAdapter(Context context, ArrayList<Word> words, int colorResourceId) {
         super(context, 0, words);
-        mLayoutColorResId = layoutColorRes;
+        mColorResourceId = colorResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        // Check if an existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
-
-        //Check if the current view is being reused,otherwise inflate the view
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
@@ -46,39 +59,40 @@ class WordAdapter extends ArrayAdapter<Word> {
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
-        // Find the LinearLayout in the list_item.xml layout with the ID text_container
-        //And set the appropriate color to it
+        // Find the TextView in the list_item.xml layout with the ID miwok_text_view.
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
+        // Get the Miwok translation from the currentWord object and set this text on
+        // the Miwok TextView.
+        miwokTextView.setText(currentWord.getMiwokTranslationId());
+
+        // Find the TextView in the list_item.xml layout with the ID default_text_view.
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+        // Get the default translation from the currentWord object and set this text on
+        // the default TextView.
+        defaultTextView.setText(currentWord.getDefaultTranslationId());
+
+        // Find the ImageView in the list_item.xml layout with the ID image.
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        // Check if an image is provided for this word or not
+        if (currentWord.hasImage()) {
+            // If an image is available, display the provided image based on the resource ID
+            imageView.setImageResource(currentWord.getImageResourceId());
+            // Make sure the view is visible
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            // Otherwise hide the ImageView (set visibility to GONE)
+            imageView.setVisibility(View.GONE);
+        }
+
+        // Set the theme color for the list item
         View textContainer = listItemView.findViewById(R.id.text_container);
-        int color = ContextCompat.getColor(getContext(), mLayoutColorResId);
+        // Find the color that the resource ID maps to
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background color of the text container View
         textContainer.setBackgroundColor(color);
 
-        // Find the TextView in the list_item.xml layout with the ID default_text_view
-        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
-
-        // Get the default Translation from the current currentWord object and
-        // set this text on the defaultTransaltion TextView
-        defaultTextView.setText(currentWord.getmDefaultTranslation());
-
-        // Find the TextView in the list_item.xml layout with the ID miwok_text_view
-        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
-
-        // Get the miwok Translation from the current currentWord object and
-        // set this text on the miwokTransaltion TextView
-        miwokTextView.setText(currentWord.getmMiwokTranslation());
-
-
-        //get the imageview from the listItemView
-        //set the proper image to the imageView
-        ImageView resImage = (ImageView) listItemView.findViewById(R.id.word_image);
-
-        //If there is an image for the imageView set the image
-        //Or else hide the imageView
-        if (currentWord.hasImage()) {
-            resImage.setImageResource(currentWord.getmImageResId());
-        } else {
-            resImage.setVisibility(View.GONE);
-        }
-        //return the entire listItemView which contains 2 TextViews
+        // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
+        // the ListView.
         return listItemView;
     }
 }

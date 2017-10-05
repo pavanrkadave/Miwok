@@ -1,99 +1,105 @@
+/*
+ * Copyright (C) 2016 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.android.miwok;
 
-import android.util.Log;
-
 /**
- * Created by pavan on 9/19/2017.
- * {@link Word} represents a vocabulary of word that a user wants to learn.
- * It contains a default translation and a miwok translation of that word.
+ * {@link Word} represents a vocabulary word that the user wants to learn.
+ * It contains resource IDs for the default translation, Miwok translation, audio file, and
+ * optional image file for that word.
  */
-
 public class Word {
 
-    //Default translation of the word
-    private String mDefaultTranslation;
+    /** String resource ID for the default translation of the word */
+    private int mDefaultTranslationId;
 
-    //Miwok translation of the word
-    private String mMiwokTranslation;
+    /** String resource ID for the Miwok translation of the word */
+    private int mMiwokTranslationId;
 
-    //ImageRes Id to get the image resource
-    private int mImageResId = NO_IMAGE_PROVODED;
+    /** Audio resource ID for the word */
+    private int mAudioResourceId;
 
-    //variable to check if the activity has an image or not
-    private static final int NO_IMAGE_PROVODED = -1;
+    /** Image resource ID for the word */
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
 
-    //song resourceId for individual listItem
-    private int mSongResId;
-
-
-    /**
-     * Create a new word object
-     * This constructor doesn't take imageResId (this is for the pharsesActivity).
-     *
-     * @param defaultTranslation is the word in a language that a user is already familier with (like English).
-     * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
-     */
-    Word(String defaultTranslation, String miwokTranslation,int songResId) {
-        mDefaultTranslation = defaultTranslation;
-        mMiwokTranslation = miwokTranslation;
-        mSongResId = songResId;
-    }
-
+    /** Constant value that represents no image was provided for this word */
+    private static final int NO_IMAGE_PROVIDED = -1;
 
     /**
-     * Create a new word object
-     * This is for all other activity which takes imageResId for displaying image in their activity.
+     * Create a new Word object.
      *
-     * @param defaultTranslation is the word in a language that a user is already familier with (like English).
-     * @param miwokTranslation   is the miwok translation of the same word in language user is familier with.
+     * @param defaultTranslationId is the string resource ID for the word in a language that the
+     *                             user is already familiar with (such as English)
+     * @param miwokTranslationId is the string resource Id for the word in the Miwok language
+     * @param audioResourceId is the resource ID for the audio file associated with this word
      */
-    Word(String defaultTranslation, String miwokTranslation, int imageResId,int songResId) {
-        mDefaultTranslation = defaultTranslation;
-        mMiwokTranslation = miwokTranslation;
-        mImageResId = imageResId;
-        mSongResId = songResId;
+    public Word(int defaultTranslationId, int miwokTranslationId, int audioResourceId) {
+        mDefaultTranslationId = defaultTranslationId;
+        mMiwokTranslationId = miwokTranslationId;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
-     * Get the default translation of the word
+     * Create a new Word object.
      *
-     * @returns the default translation of the word
+     * @param defaultTranslationId is the string resource ID for the word in a language that the
+     *                             user is already familiar with (such as English)
+     * @param miwokTranslationId is the string resource Id for the word in the Miwok language
+     * @param imageResourceId is the drawable resource ID for the image associated with the word
+     * @param audioResourceId is the resource ID for the audio file associated with this word
      */
-    public String getmDefaultTranslation() {
-        return mDefaultTranslation;
+    public Word(int defaultTranslationId, int miwokTranslationId, int imageResourceId,
+                int audioResourceId) {
+        mDefaultTranslationId = defaultTranslationId;
+        mMiwokTranslationId = miwokTranslationId;
+        mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
-     * Get the miwok translation of the word
-     *
-     * @returns the miwok translation of the word
+     * Get the string resource ID for the default translation of the word.
      */
-    public String getmMiwokTranslation() {
-        return mMiwokTranslation;
+    public int getDefaultTranslationId() {
+        return mDefaultTranslationId;
     }
 
     /**
-     * Get the image resource id fetch the proper image
-     *
-     * @returns the image for the proper imageView
+     * Get the string resource ID for the Miwok translation of the word.
      */
-    public int getmImageResId() {
-        return mImageResId;
+    public int getMiwokTranslationId() {
+        return mMiwokTranslationId;
+    }
+
+    /**
+     * Return the image resource ID of the word.
+     */
+    public int getImageResourceId() {
+        return mImageResourceId;
     }
 
     /**
      * Returns whether or not there is an image for this word.
      */
     public boolean hasImage() {
-        return mImageResId != NO_IMAGE_PROVODED;
+        return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 
-
     /**
-     *
-     * @returns the song resource id.
+     * Return the audio resource ID of the word.
      */
-    public int getmSongResId() {
-        return mSongResId;
+    public int getAudioResourceId() {
+        return mAudioResourceId;
     }
 }
